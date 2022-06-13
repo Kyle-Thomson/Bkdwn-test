@@ -23,3 +23,5 @@ sharing-your-book
 publishing
 pages
 metadata-for-sharing
+chi-squared
+there-are-two-ways-to-run-a-chi-square-test.-this-walk-through-will-go-through-both-with-a-couple-of-examples.

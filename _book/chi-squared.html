@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | A Minimal Book Example</title>
+  <title>Chapter 8 Chi Squared | A Minimal Book Example</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | A Minimal Book Example" />
+  <meta property="og:title" content="Chapter 8 Chi Squared | A Minimal Book Example" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | A Minimal Book Example" />
+  <meta name="twitter:title" content="Chapter 8 Chi Squared | A Minimal Book Example" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -36,8 +36,8 @@ set in the _output.yml file.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="sharing-your-book.html"/>
-<link rel="next" href="chi-squared.html"/>
+<link rel="prev" href="references.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -225,17 +225,101 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered hasAnchor">
-<h1>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="chi-squared" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Chi Squared<a href="chi-squared.html#chi-squared" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="there-are-two-ways-to-run-a-chi-square-test.-this-walk-through-will-go-through-both-with-a-couple-of-examples." class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> There are two ways to run a Chi Square test. This walk-through will go through both with a couple of examples.<a href="chi-squared.html#there-are-two-ways-to-run-a-chi-square-test.-this-walk-through-will-go-through-both-with-a-couple-of-examples." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Say we had two cohorts, “Control” and “Experimental”</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="chi-squared.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb6-2"><a href="chi-squared.html#cb6-2" aria-hidden="true" tabindex="-1"></a>Cohorts <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Experimental&quot;</span>), <span class="at">size =</span> <span class="dv">1000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Each cohort will also have the binary variable of sex assigned to them, as well as a categorical variable of age ranges.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="chi-squared.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2</span>)</span>
+<span id="cb7-2"><a href="chi-squared.html#cb7-2" aria-hidden="true" tabindex="-1"></a>Sex <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>), <span class="at">size =</span> <span class="dv">1000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-3"><a href="chi-squared.html#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="chi-squared.html#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
+<span id="cb7-5"><a href="chi-squared.html#cb7-5" aria-hidden="true" tabindex="-1"></a>Age.Range <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;20-29&quot;</span>, <span class="st">&quot;30-39&quot;</span>, <span class="st">&quot;40-49&quot;</span>, <span class="st">&quot;50-59&quot;</span>), <span class="at">size =</span> <span class="dv">1000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-6"><a href="chi-squared.html#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="chi-squared.html#cb7-7" aria-hidden="true" tabindex="-1"></a>Data.Frame <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(Cohorts, Sex, Age.Range))</span>
+<span id="cb7-8"><a href="chi-squared.html#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(Cohorts, Age.Range, Sex)</span></code></pre></div>
+<p>To test of our two cohorts differ significantly from one another with regards to sex or age range, we use the chi square test of independence. The first step is to create a contingency table from our data (ie a summary table with the number of males and females in each cohort). We will save the contingency table.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="chi-squared.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(Data.Frame<span class="sc">$</span>Cohorts, Data.Frame<span class="sc">$</span>Sex)</span></code></pre></div>
+<pre><code>##               
+##                Female Male
+##   Control         249  253
+##   Experimental    255  243</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="chi-squared.html#cb10-1" aria-hidden="true" tabindex="-1"></a>Cont.Sex <span class="ot">&lt;-</span> <span class="fu">table</span>(Data.Frame<span class="sc">$</span>Cohorts, Data.Frame<span class="sc">$</span>Sex)</span></code></pre></div>
+<p>Now, we run the chi square test of independence. Note that continuity correction is typically applied when any of the numbers in the contingency table are below 10 (some say 5). Fisher’s Exact test may also be another option. However, this is a non-issue for our current sample.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="chi-squared.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(Cont.Sex, <span class="at">correct =</span> F)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  Cont.Sex
+## X-squared = 0.25705, df = 1, p-value = 0.6122</code></pre>
+<p>We can do the same thing for the age ranges as we did for sex, even though age ranges has more than two options</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="chi-squared.html#cb13-1" aria-hidden="true" tabindex="-1"></a>Cont.Age <span class="ot">&lt;-</span> <span class="fu">table</span>(Data.Frame<span class="sc">$</span>Cohorts, Data.Frame<span class="sc">$</span>Age.Range)</span>
+<span id="cb13-2"><a href="chi-squared.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(Cont.Age)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  Cont.Age
+## X-squared = 2.2822, df = 3, p-value = 0.5159</code></pre>
+<p>The alternative option to the above is to give the chisq.test function two vectors and it will calculate the contingency table behind the scenes. This is obviously less code, but is less straightforward to me and typically you will want to see the contingency table anyways.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="chi-squared.html#cb15-1" aria-hidden="true" tabindex="-1"></a>chi.vectors <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(Data.Frame<span class="sc">$</span>Cohorts, Data.Frame<span class="sc">$</span>Sex, <span class="at">correct =</span> F)</span>
+<span id="cb15-2"><a href="chi-squared.html#cb15-2" aria-hidden="true" tabindex="-1"></a>chi.vectors<span class="sc">$</span>observed</span></code></pre></div>
+<pre><code>##                   Data.Frame$Sex
+## Data.Frame$Cohorts Female Male
+##       Control         249  253
+##       Experimental    255  243</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="chi-squared.html#cb17-1" aria-hidden="true" tabindex="-1"></a>chi.vectors<span class="sc">$</span>expected</span></code></pre></div>
+<pre><code>##                   Data.Frame$Sex
+## Data.Frame$Cohorts  Female    Male
+##       Control      253.008 248.992
+##       Experimental 250.992 247.008</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="chi-squared.html#cb19-1" aria-hidden="true" tabindex="-1"></a>chi.vectors<span class="sc">$</span>p.value</span></code></pre></div>
+<pre><code>## [1] 0.6121572</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="chi-squared.html#cb21-1" aria-hidden="true" tabindex="-1"></a>chi.df <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(Cont.Sex, <span class="at">correct =</span> F)</span>
+<span id="cb21-2"><a href="chi-squared.html#cb21-2" aria-hidden="true" tabindex="-1"></a>chi.df<span class="sc">$</span>observed</span></code></pre></div>
+<pre><code>##               
+##                Female Male
+##   Control         249  253
+##   Experimental    255  243</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="chi-squared.html#cb23-1" aria-hidden="true" tabindex="-1"></a>chi.df<span class="sc">$</span>expected</span></code></pre></div>
+<pre><code>##               
+##                 Female    Male
+##   Control      253.008 248.992
+##   Experimental 250.992 247.008</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="chi-squared.html#cb25-1" aria-hidden="true" tabindex="-1"></a>chi.df<span class="sc">$</span>p.value</span></code></pre></div>
+<pre><code>## [1] 0.6121572</code></pre>
+<p>Finally, let’s say that you have the contingency table already in excel and just want to run the chi square test as quickly and easily as possible. You don’t want to manually enter the data into R, and you don’t want to deal with excels statistics functionality.</p>
+<p>Easy! Copy the contingency table into your clipboard (just exclude the row names):</p>
+<p><img src="images/paste-09795F63.png" width="218" /></p>
+<p>Then, run the following (I’ve commented it out because it throws an error, but trust me it works):</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="chi-squared.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Cont.From.Xl &lt;- read.delim(pipe(&quot;pbpaste&quot;))</span></span>
+<span id="cb27-2"><a href="chi-squared.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">#chisq.test(Cont.From.Xl, correct = F)</span></span></code></pre></div>
 
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div class="csl-entry">
+Xie, Yihui. 2015. <em>Dynamic Documents with <span>R</span> and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.org/knitr/">http://yihui.org/knitr/</a>.
 </div>
+<div class="csl-entry">
+———. 2022. <em>Bookdown: Authoring Books and Technical Documents with r Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="sharing-your-book.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="chi-squared.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="references.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -266,7 +350,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-references.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/08-Chi-Square.Rmd",
 "text": "Edit"
 },
 "history": {
