@@ -29,15 +29,15 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="John Doe" />
 
 
-<meta name="date" content="2022-06-12" />
+<meta name="date" content="2022-06-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="references.html"/>
-
+<link rel="prev" href="sharing-your-book.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -200,11 +200,11 @@ div.csl-indent {
 <li class="chapter" data-level="7.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>7.2</b> 404 pages</a></li>
 <li class="chapter" data-level="7.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>7.3</b> Metadata for sharing</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="chapter" data-level="8" data-path="chi-squared.html"><a href="chi-squared.html"><i class="fa fa-check"></i><b>8</b> Chi Squared</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="chi-squared.html"><a href="chi-squared.html#there-are-two-ways-to-run-a-chi-square-test.-this-walk-through-will-go-through-both-with-a-couple-of-examples."><i class="fa fa-check"></i><b>8.1</b> There are two ways to run a Chi Square test. This walk-through will go through both with a couple of examples.</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -290,36 +290,28 @@ div.csl-indent {
 ##   Experimental 250.992 247.008</code></pre>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="chi-squared.html#cb25-1" aria-hidden="true" tabindex="-1"></a>chi.df<span class="sc">$</span>p.value</span></code></pre></div>
 <pre><code>## [1] 0.6121572</code></pre>
-<p>Finally, let’s say that you have the contingency table already in excel and just want to run the chi square test as quickly and easily as possible. You don’t want to manually enter the data into R, and you don’t want to deal with excels statistics functionality.</p>
+<p>Finally, let’s say that you have the contingency table already in excel and just want to run the chi square test as quickly and easily as possible. You don’t want to manually enter the data into R, and you don’t want to deal with excels statistics functionality.<span class="citation"><sup><a href="#ref-avery2015" role="doc-biblioref">3</a></sup></span></p>
 <p>Easy! Copy the contingency table into your clipboard (just exclude the row names):</p>
-<p><img src="images/paste-09795F63.png" width="218" /></p>
+<p><img src="_bookdown_files/_main_files/figure-html/Chi%20Square%20figure%201.png" /></p>
 <p>Then, run the following (I’ve commented it out because it throws an error, but trust me it works):</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="chi-squared.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Cont.From.Xl &lt;- read.delim(pipe(&quot;pbpaste&quot;))</span></span>
 <span id="cb27-2"><a href="chi-squared.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">#chisq.test(Cont.From.Xl, correct = F)</span></span></code></pre></div>
 
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div class="csl-entry">
-Xie, Yihui. 2015. <em>Dynamic Documents with <span>R</span> and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.org/knitr/">http://yihui.org/knitr/</a>.
-</div>
-<div class="csl-entry">
-———. 2022. <em>Bookdown: Authoring Books and Technical Documents with r Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.
 </div>
 </div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body">
+<div id="ref-avery2015" class="csl-entry">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">Avery RA, Rajjoub RD, Trimboli-Heidler C, Waldman AT. Applications of optical coherence tomography in pediatric clinical neuroscience. <em>Neuropediatrics</em>. 2015;46(2):88-97. doi:<a href="https://doi.org/10.1055/s-0035-1549098">10.1055/s-0035-1549098</a></div>
 </div>
 </div>
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="references.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="sharing-your-book.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

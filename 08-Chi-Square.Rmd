@@ -1,7 +1,5 @@
 ---
-output: html_document
-editor_options: 
-  chunk_output_type: inline
+---
 ---
 
 # Chi Squared
@@ -64,11 +62,11 @@ chi.df$expected
 chi.df$p.value
 ```
 
-Finally, let's say that you have the contingency table already in excel and just want to run the chi square test as quickly and easily as possible. You don't want to manually enter the data into R, and you don't want to deal with excels statistics functionality.
+Finally, let's say that you have the contingency table already in excel and just want to run the chi square test as quickly and easily as possible. You don't want to manually enter the data into R, and you don't want to deal with excels statistics functionality.[@avery2015]
 
 Easy! Copy the contingency table into your clipboard (just exclude the row names):
 
-![](images/paste-09795F63.png){width="218"}
+![](_bookdown_files/_main_files/figure-html/Chi%20Square%20figure%201.png)
 
 Then, run the following (I've commented it out because it throws an error, but trust me it works):
 
